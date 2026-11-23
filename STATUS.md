@@ -27,6 +27,13 @@ The README is explicit that these are not included and need a second phase: frie
 ## Decision needed from the user
 Deploy the starter as-is once Supabase is ready, or build the missing Phase 5 features (friends, groups, presence, push, seasonal themes, announcements, game management) before deployment?
 
+## Deployment decision (2026-11-24 ~02:21 CST)
+User confirmed: deploy Prime Play as-is, and ONLY Prime Play, not Destiny Gameroom. Destiny stays untouched.
+- Local git repo initialized and committed (commit 45bc03c, "Prime Play Casino starter: player and admin apps, Supabase schema"). No remote yet.
+- `gh` CLI is present but NOT logged in to any GitHub host, so the repo cannot be pushed from here. GitHub repo creation + push needs the user's GitHub sign-in in the browser (same route as the chatbot repo).
+- Deployment checklist (in order): (1) user creates Supabase project, runs schema.sql, enables Email/Password auth, provides URL + anon key; (2) GitHub repo created and code pushed; (3) two Vercel projects via dashboard GitHub import (Root Directory `player`, then `admin`), each with the two Supabase env vars; (4) admin account created via player sign-up, promoted with the README SQL; (5) live test: sign up, sign in, submit inquiry, admin reply, player reads reply.
+
+
 ## Standing rules carried over
 - No real-money features, no deposits, withdrawals, wagering or cash rewards, until licensing and legal approval are confirmed.
 - Do not claim a feature works until it has been tested live. Do not deploy anything the user has not approved as a bounded step.
